@@ -167,11 +167,6 @@ function fxDeckAct(dir){
   if (dir === 'left'){ fxSparks(x, y, '#FFD35C', false, 12); return; }
   fxCoinCannon(x, y, false, 80); fxConfetti(90); fxSparks(x, y, FX_MINT, false, 40); fxFlash(); fxBumpStreak();
 }
-function fxNextIn(){
-  const c = $('#pcard'); if (!fxOn() || !c) return;
-  c.animate([{ opacity: 0, transform: 'translateX(72%) rotate(6deg) scale(.94)' }, { opacity: 1, transform: 'none' }],
-            { duration: 420, easing: 'cubic-bezier(.34,1.4,.64,1)' });
-}
 /* the taps that matter: answers, main buttons, the second buttons, links that move on */
 document.addEventListener('click', e => {
   if (!fxOn()) return;
