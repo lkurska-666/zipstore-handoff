@@ -1,0 +1,165 @@
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Flying Animations</title>
+<style>
+:root{--q:#2f9bff;--q-wash:#e6f2ff;--q-fg:#0b2a2c;--bg:#f4f8f7;--card:#ffffff;--fg:#0b2a2c;--muted:#4d6465;--line:#d3e0de;--accent:#0d8165;--note:#fff4d6;--note-fg:#5a4300}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--q-wash:#0b2f4f;--bg:#041b20;--card:#0a2d30;--fg:#e8f4f1;--muted:#9fb7b5;--line:#1c4447;--accent:#83ffde;--note:#3a2a08;--note-fg:#ffd35c;color-scheme:dark}}
+:root[data-theme="dark"]{--q-wash:#0b2f4f;--bg:#041b20;--card:#0a2d30;--fg:#e8f4f1;--muted:#9fb7b5;--line:#1c4447;--accent:#83ffde;--note:#3a2a08;--note-fg:#ffd35c;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/24px "Poppins",system-ui,sans-serif;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:32px 48px}
+main{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+h1{font-size:24px;line-height:32px;font-weight:600;margin:0}
+.lead{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.item{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:32px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.item.wide{grid-template-columns:minmax(0,480px) minmax(0,1fr)}
+video{display:block;width:100%;border-radius:12px;background:#000}
+h2{font-size:20px;line-height:28px;font-weight:600;margin:0 0 4px}
+.tag{font-size:12px;line-height:20px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);font-weight:600}
+ol,ul{margin:12px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+li{color:var(--fg)}
+.note{margin-top:16px;padding:12px 16px;border-radius:12px;background:var(--note);color:var(--note-fg);font-size:14px;line-height:20px}
+.dl{margin-top:16px;font-size:14px;line-height:20px;color:var(--muted)}
+.dl code{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:13px}
+
+.qs{display:flex;flex-direction:column;gap:16px}
+.qs h2{margin:0}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.q{background:var(--q-wash);border:1.5px solid var(--q);border-radius:16px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.qtag{align-self:flex-start;background:var(--q);color:#041b20;font-size:12px;line-height:20px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:6px}
+.q h3{margin:0;font-size:16px;line-height:24px;font-weight:600}
+.q p{margin:0;font-size:14px;line-height:20px;color:var(--fg)}
+.q .meanwhile{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{font-size:12px;line-height:20px;font-weight:600;color:#041b20;background:var(--q);border-radius:6px;padding:2px 8px;text-decoration:none}
+@media (max-width:720px){.item,.item.wide{grid-template-columns:minmax(0,1fr);gap:20px;padding:16px}}
+@media (prefers-reduced-motion:reduce){video{animation:none}}
+
+.shot{max-height:720px;overflow-y:auto;border-radius:12px;border:1px solid var(--line);background:#fff;width:100%;max-width:375px}
+.shot img{display:block;width:100%;height:auto}
+.cmp{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;line-height:20px}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:8px 12px 8px 0;border-top:1px solid var(--line)}
+.cmp th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);font-weight:600;border-top:0}
+.cmp td:first-child{white-space:nowrap;font-weight:600}
+.cmp td.same{color:var(--muted)}
+.cmp .tbl{overflow-x:auto}
+.tw{overflow-x:auto}
+
+.stills{display:flex;gap:16px;flex-wrap:wrap}
+.stills figure{margin:0;flex:1 1 180px;max-width:240px}
+.stills img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.stills figcaption{margin-top:8px;font-size:14px;line-height:20px;color:var(--muted)}
+.sp{max-width:none}
+h3.sub{font-size:16px;line-height:24px;margin:20px 0 0}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.box p{margin:8px 0 0}
+.box ul,.box ol{margin-top:8px}
+
+/* the trigger column is text, not a label: let it wrap, and give the effect the larger share */
+.cmp{table-layout:fixed}
+.cmp td:first-child,.cmp th:first-child{width:42%;white-space:normal;padding-right:24px}
+.cmp td:last-child{width:58%}
+@media (max-width:720px){.cmp td:first-child,.cmp th:first-child{width:46%}}
+
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+</style>
+<main>
+  <header>
+    <h1>Flying animations</h1>
+    <p class="lead">Approved on 26 Nov. All numbers are prototype values.</p>
+  </header>
+
+  <section class="box">
+    <div class="tag">1 · Why</div>
+    <ul>
+      <li>The quiz feels like a small game: every answer gets a reward.</li>
+      <li>Key moments stand out: the dream income answer, choosing a product, paying.</li>
+      <li>The competitor (sellproducts.ai) does the same. We copied its mechanics.</li>
+      <li>It is a hypothesis. We have no baseline yet, so we can't say how much it helps.</li>
+    </ul>
+  </section>
+
+  <section class="item wide">
+    <div class="stills">
+      <figure><img src="still-dream-income.jpg" alt="Dream income answer" loading="lazy"><figcaption>Dream income answer</figcaption></figure>
+      <figure><img src="still-daily-sales.jpg" alt="Daily sales screen with confetti" loading="lazy"><figcaption>Daily sales: confetti</figcaption></figure>
+      <figure><img src="still-choose-product.jpg" alt="Choosing a product" loading="lazy"><figcaption>Choosing a product</figcaption></figure>
+    </div>
+    <div>
+      <div class="tag">2 · What it is</div>
+      <ol>
+        <li>Coins, emoji and sparks fly from the right edge, at the height of the tap. Big moments fly from the middle.</li>
+        <li>A "🔥 xN" chip in the header, next to a shorter progress bar.</li>
+        <li>Confetti on two screens.</li>
+        <li>Picks card: a turning ring behind it and pulsing badges.</li>
+      </ol>
+      <div class="note">Motion is hard to show in a still. Open the <a href="https://claude.ai/artifact/XY8ahueMhL9jqve8Gwn8WH" target="_blank" rel="noopener">prototype</a> (menu "Jump to" opens any screen, ?fx=off turns the effects off).</div>
+    </div>
+  </section>
+
+  <section class="box">
+    <div class="tag">3 · When it appears</div>
+    <div class="tw"><table class="cmp">
+      <tr><th>Trigger</th><th>Effect</th></tr>
+      <tr><td>First screen button</td><td>44 coins and emoji + flash</td></tr>
+      <tr><td>Quiz: goal</td><td>14 sparks</td></tr>
+      <tr><td>Quiz: experience</td><td>7 emoji (the answer's own)</td></tr>
+      <tr><td>Quiz: time</td><td>Flash + 14 sparks</td></tr>
+      <tr><td>Quiz: dropshipping</td><td>7 brain emoji</td></tr>
+      <tr><td>Quiz: dream income</td><td>80 coins and emoji + 40 sparks + flash (the biggest)</td></tr>
+      <tr><td>Daily sales screen</td><td>90 confetti when "Big goals start with a plan" appears</td></tr>
+      <tr><td>Other main buttons</td><td>34 sparks + 16 coins and emoji</td></tr>
+      <tr><td>Secondary buttons and links</td><td>22 sparks + 6 coins</td></tr>
+      <tr><td>Picks: arrival</td><td>60 confetti</td></tr>
+      <tr><td>Picks: Next (tap or swipe left)</td><td>12 sparks, the next card slides in (0.42 s)</td></tr>
+      <tr><td>Picks: choose (tap or swipe right)</td><td>80 coins and emoji + 90 confetti + 40 sparks + flash</td></tr>
+      <tr><td>Money buttons: Unlock My Store, Pay, Apple Pay, Google Pay, $1 trial, Start 7 days free, Start AutoDS trial, Start 30 days free, Claim my store</td><td>72 coins and emoji + 44 sparks + flash</td></tr>
+      <tr><td>Confirm buttons: I'm back, keep going; Continue (AutoDS, email)</td><td>36 coins and emoji + 30 sparks</td></tr>
+      <tr><td>Reveal: arrival</td><td>Store window flies in (0.8 s). After 0.35 s: 44 coins and emoji from the middle + flash</td></tr>
+      <tr><td>Payment confirmed</td><td>70 coins and emoji from the middle + 110 confetti + flash</td></tr>
+    </table></div>
+  </section>
+
+  <section class="box">
+    <div class="tag">3b · The streak chip</div>
+    <ul>
+      <li><b>Shown:</b> not on the first screen (no header). Hidden until the first answer, then on every screen to the end of the funnel. After the email step it stops changing.</li>
+      <li><b>Counts +1:</b> each quiz answer, each main button before the email, choosing a product.</li>
+      <li><b>Does not count:</b> Next on picks, secondary buttons and links, Back, sound, the first screen button, and anything from the email step on.</li>
+      <li><b>Normal run:</b> x5 after the quiz, x6, x7, then x8 after choosing a product, and x8 to the end. Side steps (dropshipping explainer, own link) can add more.</li>
+      <li><b>Direct link to a later screen:</b> the chip starts from the number a normal run would have there.</li>
+      <li>With reduced motion or effects off, there is no chip.</li>
+    </ul>
+  </section>
+
+  <section class="box">
+    <div class="tag">4 · How it works</div>
+    <ul>
+      <li><b>One full-screen canvas</b> above everything (z-index 121), ignores taps, pixel ratio max 2. The loop stops when no particles are left.</li>
+      <li><b>Particles</b> fall with gravity per frame: coins .42, emoji .32 to .36, sparks .12, confetti .34. They fade as they age.</li>
+      <li><b>Origin:</b> the right edge of the screen column (10 px inside on a phone; 40 px outside the column on desktop if 90 px are free). Only the height follows the tap. The award and the Reveal fly from the middle, confetti from both side edges.</li>
+      <li><b>Cannon emoji:</b> one coin in three, the rest from 💸 🤑 💎 🚀 ⭐ ✨ 🔥 💰 🏆 🎉.</li>
+      <li><b>Chip:</b> 32 px high, 12 px side padding, gold 12/20 bold text, 16 px 🔥, gold 12% fill, 1 px gold 30% ring. Pops in in 0.35 s, jumps for 0.45 s on each +1. The progress bar is 88 px wide, right-aligned.</li>
+      <li><b>Reduced motion:</b> nothing flies.</li>
+      <li><b>Removed:</b> drifting icons behind the loaders and on the first screen.</li>
+    </ul>
+  </section>
+
+  <section class="box">
+    <div class="tag">5 · Open points</div>
+    <ul>
+      <li>All counts, speeds and timings can be tuned.</li>
+      <li>A feature flag to turn the effects off is a recommendation, not a decision.</li>
+      <li>Placeholders on the picks card: "Supplier secured", "(AI-verified)", "N stores reserved today" and "of 197". They need real data and approval before customers see them.</li>
+    </ul>
+  </section>
+
+  <section class="box">
+    <div class="tag">6 · Links</div>
+    <ul>
+      <li><a href="https://claude.ai/artifact/XY8ahueMhL9jqve8Gwn8WH" target="_blank" rel="noopener">Prototype</a> (effects are on by default)</li>
+      <li><a href="https://www.figma.com/design/vemG9XS91SWOztrnKvbT0P/Paid-funnel?node-id=4205-7640" target="_blank" rel="noopener">Figma: header with chip and short bar</a> (set "Header/Chrome · streak", Step 01 to 16, properties Chip and Count). Used in every flow frame.</li>
+      <li>Figma examples: <a href="https://www.figma.com/design/vemG9XS91SWOztrnKvbT0P/Paid-funnel?node-id=221-1321" target="_blank" rel="noopener">mobile quiz question 4</a>, <a href="https://www.figma.com/design/vemG9XS91SWOztrnKvbT0P/Paid-funnel?node-id=890-7013" target="_blank" rel="noopener">mobile email step</a></li>
+      <li><a href="https://github.com/lkurska-666/zipstore-handoff/tree/main/flying-animations" target="_blank" rel="noopener">Reference code</a> (GitHub, <code>zipstore-handoff/flying-animations</code>). It is the prototype code, not a drop-in module.</li>
+    </ul>
+  </section>
+</main>

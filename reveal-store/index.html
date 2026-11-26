@@ -1,0 +1,100 @@
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Reveal Store Animation</title>
+<style>
+:root{--q:#2f9bff;--q-wash:#e6f2ff;--q-fg:#0b2a2c;--bg:#f4f8f7;--card:#ffffff;--fg:#0b2a2c;--muted:#4d6465;--line:#d3e0de;--accent:#0d8165;--note:#fff4d6;--note-fg:#5a4300}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--q-wash:#0b2f4f;--bg:#041b20;--card:#0a2d30;--fg:#e8f4f1;--muted:#9fb7b5;--line:#1c4447;--accent:#83ffde;--note:#3a2a08;--note-fg:#ffd35c;color-scheme:dark}}
+:root[data-theme="dark"]{--q-wash:#0b2f4f;--bg:#041b20;--card:#0a2d30;--fg:#e8f4f1;--muted:#9fb7b5;--line:#1c4447;--accent:#83ffde;--note:#3a2a08;--note-fg:#ffd35c;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/24px "Poppins",system-ui,sans-serif;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:32px 48px}
+main{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+h1{font-size:24px;line-height:32px;font-weight:600;margin:0}
+.lead{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.item{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:32px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.item.wide{grid-template-columns:minmax(0,480px) minmax(0,1fr)}
+video{display:block;width:100%;border-radius:12px;background:#000}
+h2{font-size:20px;line-height:28px;font-weight:600;margin:0 0 4px}
+.tag{font-size:12px;line-height:20px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);font-weight:600}
+ol,ul{margin:12px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+li{color:var(--fg)}
+.note{margin-top:16px;padding:12px 16px;border-radius:12px;background:var(--note);color:var(--note-fg);font-size:14px;line-height:20px}
+.dl{margin-top:16px;font-size:14px;line-height:20px;color:var(--muted)}
+.dl code{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:13px}
+
+.qs{display:flex;flex-direction:column;gap:16px}
+.qs h2{margin:0}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.q{background:var(--q-wash);border:1.5px solid var(--q);border-radius:16px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.qtag{align-self:flex-start;background:var(--q);color:#041b20;font-size:12px;line-height:20px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:6px}
+.q h3{margin:0;font-size:16px;line-height:24px;font-weight:600}
+.q p{margin:0;font-size:14px;line-height:20px;color:var(--fg)}
+.q .meanwhile{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{font-size:12px;line-height:20px;font-weight:600;color:#041b20;background:var(--q);border-radius:6px;padding:2px 8px;text-decoration:none}
+@media (max-width:720px){.item,.item.wide{grid-template-columns:minmax(0,1fr);gap:20px;padding:16px}}
+@media (prefers-reduced-motion:reduce){video{animation:none}}
+
+.shot{max-height:720px;overflow-y:auto;border-radius:12px;border:1px solid var(--line);background:#fff;width:100%;max-width:375px}
+.shot img{display:block;width:100%;height:auto}
+.cmp{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;line-height:20px}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:8px 12px 8px 0;border-top:1px solid var(--line)}
+.cmp th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);font-weight:600;border-top:0}
+.cmp td:first-child{white-space:nowrap;font-weight:600}
+.cmp td.same{color:var(--muted)}
+.cmp .tbl{overflow-x:auto}
+.tw{overflow-x:auto}
+
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+</style>
+<main>
+  <header>
+    <h1>Reveal screen: store window and phone</h1>
+    <p class="lead">Timings and speeds are prototype values, not product values.</p>
+  </header>
+
+  <section class="item wide">
+    <video src="reveal-store.mp4" autoplay loop muted playsinline controls aria-label="Reveal screen: the store window and the phone that scrolls"></video>
+    <div>
+      <div class="tag">1 · The animation</div>
+      <p style="margin:4px 0 0;color:var(--muted)">The video runs 73 s to show the whole scroll. Phone layout, 393 px wide.</p>
+      <ol>
+        <li><b>Window:</b> fades in and rises 14 px. 0.7 s, starts at 0.1 s.</li>
+        <li><b>"Reserved" sash:</b> slides in from the top right. 0.5 s, starts at 1.0 s.</li>
+        <li><b>Phone:</b> fades in and rises 28 px. 0.7 s, starts at 1.8 s.</li>
+        <li><b>Scroll:</b> at 3.0 s the page in the phone scrolls once, top to bottom, and stops. The strip at the top moves left at the same time (26 s per loop).</li>
+      </ol>
+      <h3 style="font-size:16px;line-height:24px;margin:16px 0 0">How to build the scroll</h3>
+      <ul>
+        <li>The mobile page is designed at 375 px. Scale it to the phone screen width and move it with CSS transform (translateY). No scrollTop, no timers.</li>
+        <li>Distance = page height × scale − screen height. Duration = distance ÷ 14 px per second, at least 10 s (65 s in the prototype).</li>
+        <li>Measure again when the container changes size.</li>
+        <li>The phone block must be at least 312 px high, or the card below covers the phone.</li>
+        <li>Easing for the three beats: cubic-bezier(.22, 1, .36, 1). Animate only transform and opacity.</li>
+        <li>Reduced motion: no animation, the store shows in its final state.</li>
+      </ul>
+      <div class="note">Placeholders: the 3.0 s start and 14 px per second. At that speed the page takes 65 s, longer than anyone will watch.</div>
+    </div>
+  </section>
+
+  <section class="item wide" id="mobile-page">
+    <div class="shot"><img src="mobile-page.jpg" alt="The universal mobile store page, full length" width="375" height="5201" loading="lazy"></div>
+    <div>
+      <div class="tag">2 · The mobile page</div>
+      <p style="margin:4px 0 0"><b>One universal page for any product.</b> It shows the person their store and helps to sell. It is not a render of the real store.</p>
+      <p style="margin:8px 0 0"><b>Figma</b> (file Paid funnel): build from the copy <a href="https://www.figma.com/design/vemG9XS91SWOztrnKvbT0P/Paid-funnel?node-id=4172-7990" target="_blank" rel="noopener">"Homepage · universal"</a>. The original template is <a href="https://www.figma.com/design/vemG9XS91SWOztrnKvbT0P/Paid-funnel?node-id=4164-17064" target="_blank" rel="noopener">"Homepage"</a>. Icons are in <a href="https://www.figma.com/design/vemG9XS91SWOztrnKvbT0P/Paid-funnel?node-id=4175-8042" target="_blank" rel="noopener">"Icons · Lucide"</a>.</p>
+      <div class="tw"><table class="cmp">
+        <tr><th>Section</th><th>What it has (vs the template)</th></tr>
+        <tr><td>Header</td><td>New: moving strip + bar with menu, logo, search, bag. No status bar.</td></tr>
+        <tr><td>Product</td><td>Stars + "Customer reviews" (no number), name, "Special features" with 4 check lines, Add to bag, photo.</td></tr>
+        <tr><td>Comparison</td><td>"How it compares": 2 blocks, each a photo and 4 rows with a check. Skeleton bars instead of text in the second block and in the last two rows of the first.</td></tr>
+        <tr><td>Cards</td><td>"Why you will like it": 4 cards (purple, cream, white outline, green) with icon, title and one line. Titles: Quality you can feel, Simple to use, Made for every day, A thoughtful pick.</td></tr>
+        <tr><td>Countdown</td><td>"Don't miss the deal", 3 days 22 hours 9 min 56 sec (placeholder).</td></tr>
+        <tr><td>Gallery</td><td>"Product Gallery", one photo, no slider arrows.</td></tr>
+        <tr><td>Benefits</td><td>"Discover benefits", Add to bag, 3 rows with icon: Easy to use, Made for every day, Worth it.</td></tr>
+        <tr><td>Reviews</td><td>"What our customers say", 3 round photos. The first has text, the other two skeleton bars. No names, no roles.</td></tr>
+        <tr><td>Bottom</td><td>Nothing (the phone frame has its own).</td></tr>
+      </table></div>
+      <div class="note">All texts are generic placeholders. Skeleton bars are intentional, so the same text does not repeat. Colours are the wireframe's.</div>
+    </div>
+  </section>
+</main>
